@@ -1,0 +1,15 @@
+<% active_table_for :transactions_table, @active_table_output,
+   :refresh_url => url_for(:action => 'display_transactions_table', :path => @user.id, :tab => @tab) do |t| %>
+  <%- active_tr 'transaction', t.id do %>
+    <td align="center">
+      <%= content_tag :span, t.amount, :style => t.amount >= 0 ? 'color:green;' : 'color:red;' %>
+    </td>
+    <td><%= h t.note %></td>
+    <td><%= h t.admin_user ? t.admin_user.name : ''%></td>
+    <td>
+      <%= h t.source %>
+    </td>
+    <td><%= t.created_at.strftime("%m/%d/%Y") %></td>
+    <td><%= t.updated_at.strftime("%m/%d/%Y") %></td>
+  <% end -%>
+<% end -%>

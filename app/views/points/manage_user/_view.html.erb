@@ -1,0 +1,33 @@
+<script>
+PointsData = {
+  viewTransactions: function() {
+    $j('#tab_<%= @tab %>').load("<%= url_for :action => 'view', :path => @user.id, :tab => @tab %>");
+  }
+}
+</script>
+
+
+<div style="padding-bottom:5px;">
+  <h2>User Points Total: <%= @points_user.points %></h2>
+</div>
+
+
+
+<% ajax_tabs ['Transactions', ['Add / Remove Points', jvh("$j('#transaction').load('#{url_for(:action => 'transaction', :path => @user.id, :tab => @tab)}')")]], 'Transactions' do |t| -%>
+
+<% t.tab do -%>
+
+
+<div class='admin_content'>
+<div id='transactions_table'>
+<%= render :partial => 'transactions_table' %>
+</div>
+</div>
+<% end -%>
+
+<% t.tab do -%>
+<div id="transaction">
+</div>
+<% end -%>
+
+<% end -%>

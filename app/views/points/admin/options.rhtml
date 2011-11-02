@@ -1,0 +1,11 @@
+<div class='admin_content'>
+<% admin_form_for :options, @options do |f| -%>
+  <%= f.text_field :open_email_points, :description => 'Points received for every email a user opens' %>
+  <%= f.text_field :open_email_source %>
+  <%= f.text_field :link_email_points, :description => 'Points received for every email a clicks a link on' %>
+  <%= f.text_field :link_email_source %>
+
+<%= f.submit_tag 'Save' %>
+
+<%  end -%>
+</div>
