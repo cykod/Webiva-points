@@ -18,7 +18,7 @@ class Addpoints < ActiveRecord::Migration
     end
 
     add_index :points_users,:end_user_id, :name => 'user'
-    add_index :points_users,:points_user_id, :name => 'points_user'
+    add_index :points_transactions,:points_user_id, :name => 'points_user'
     add_index :points_transactions, :end_user_id, :name => 'user'
   end
 

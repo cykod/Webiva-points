@@ -16,6 +16,13 @@ class PointsUser < DomainModel
 
   def commit_transaction(transaction)
     self.points += transaction.amount
+    self.end_user.tag(transaction.source)
+    if(transaction.admin_user_id)
+      act = transaction.amount > 0 ? 'admin_add' : 'admin_remove'
+    else
+      act = transaction.amount > 0 ? 'add' : 'remove'
+    end
+    self.end_user.action("/points/action/#{act}", :identifier => transaction.source)
     transaction.save && self.save
   end
 
