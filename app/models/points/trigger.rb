@@ -31,7 +31,7 @@ class Points::Trigger < Trigger::TriggeredActionHandler
     def perform(data={},user = nil)
       @data = data
     
-      if user
+      if user && user.id
         points_user = PointsUser.push_user user
         points_user.add_points options.amount, :note => options.note, :source => options.source
       end
