@@ -2,7 +2,7 @@
 class Points::ManageUserController < ModuleController
   include ActiveTable::Controller
 
-  permit 'credits_manage'
+  permit 'points_manage'
 
   component_info 'Points'
 
