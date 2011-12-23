@@ -4,7 +4,7 @@ class PointsUser < DomainModel
   has_end_user :end_user_id
   has_many :points_transactions
 
-  def add_points(amount,options)
+  def add_points(amount,options= {})
     self.commit_transaction(self.points_transactions.build(
       {:amount => amount}.merge(options)
     ))
@@ -16,7 +16,7 @@ class PointsUser < DomainModel
 
   def commit_transaction(transaction)
     self.points += transaction.amount
-    self.end_user.tag(transaction.source)
+    self.end_user.tag(transaction.source) if transaction.source.present?
     if(transaction.admin_user_id)
       act = transaction.amount > 0 ? 'admin_add' : 'admin_remove'
     else
